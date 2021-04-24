@@ -1,32 +1,37 @@
 import json, requests, re
-import random
 from pagermaid.listener import listener, config
 from pagermaid.utils import clear_emojis, obtain_message, attach_log
-
+from time import sleep
 
 @listener(is_plugin=True, outgoing=True, command="tr",
-          description="通过腾讯AI开放平台将目标消息翻译成指定的语言。",
+          description="通过腾讯AI开放平台将目标消息翻译成指定的语言。ps: 中文代号为zh",
           parameters="<文本/回复消息> <指定语言>")
 async def tx_t(context):
     """ PagerMaid universal translator. """
     reply = await context.get_reply_message()
     USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:65.0) Gecko/20100101 Firefox/65.0"
     headers = {"user-agent": USER_AGENT}
-    # lang = ['en', 'jp', 'kr', 'ru', 'fr', 'de']
-    # n = random.randint(0, 5)
+    api_lang = ['zh', 'en', 'jp', 'kr', 'fr', 'es', 'it', 'de', 'tr', 'ru', 'ru', 'pt', 'vi', 'id', 'ms', 'th']
     lang = 'en'
     if reply:
         message = reply.text
         if context.parameter:
             if re.search(r'[a-z]{2}', context.parameter[0]):
-                lang = context.parameter[0]
+                if context.parameter[0] in api_lang:
+                    lang = context.parameter[0]
+                else:
+                    await context.edit("指定语言未支持，默认使用英语")
         else:
             await context.edit("未指定语言，默认使用英语")
     elif context.parameter:
         message = context.parameter[0]
         try:
-            lang = context.parameter[1]
-            # n = 0
+            tra = context.parameter[1]
+            if re.search(r'[a-z]{2}', tra):
+                if tra in api_lang:
+                    lang = tra
+                else:
+                    await context.edit("指定语言未支持，默认使用英语")
         except IndexError:
             await context.edit("未指定语言，默认使用英语")
     else:
