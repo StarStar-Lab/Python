@@ -81,7 +81,7 @@ async def eat(context):
             raise exception
     photo = await context.client.download_profile_photo(
         target_user.user.id,
-        "plugins/eo/" + str(target_user.user.id) + ".jpg",
+        "plugins/ero/" + str(target_user.user.id) + ".jpg",
         download_big=True
     )
     reply_to = context.message.reply_to_msg_id
@@ -97,7 +97,6 @@ async def eat(context):
                 with open('plugins/ero/mask' + str(num) + '.png', 'wb') as ms:
                     ms.write(re.content)
         number = randint(1, max_number)
-        number = 9
         markImg = Image.open("plugins/ero/" + str(target_user.user.id) + ".jpg")
         eatImg = Image.open("plugins/ero/ero" + str(number) + ".png")
         maskImg = Image.open("plugins/ero/mask" + str(number) + ".png")
