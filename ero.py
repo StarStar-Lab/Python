@@ -14,9 +14,11 @@ positions = {
     "1": [591, 66],
     "2": [5, 127],
     "3": [106, 0],
-    "4": [369, 355]
+    "4": [369, 355],
+    "5": [177, 309],
+    "6": [19, 0]
 }
-max_number = 4
+max_number = 6
 
 
 def eat_it(base, mask, photo, number):
@@ -97,6 +99,7 @@ async def eat(context):
                 with open('plugins/ero/mask' + str(num) + '.png', 'wb') as ms:
                     ms.write(re.content)
         number = randint(1, max_number)
+        # number = 7
         markImg = Image.open("plugins/ero/" + str(target_user.user.id) + ".jpg")
         eatImg = Image.open("plugins/ero/ero" + str(number) + ".png")
         maskImg = Image.open("plugins/ero/mask" + str(number) + ".png")
