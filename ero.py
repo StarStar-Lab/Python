@@ -81,7 +81,7 @@ async def eat(context):
             raise exception
     photo = await context.client.download_profile_photo(
         target_user.user.id,
-        "plugins/eto/" + str(target_user.user.id) + ".jpg",
+        "plugins/eo/" + str(target_user.user.id) + ".jpg",
         download_big=True
     )
     reply_to = context.message.reply_to_msg_id
