@@ -16,12 +16,13 @@ positions = {
     "3": [106, 0],
     "4": [369, 355],
     "5": [177, 309],
-    "6": [19, 0]
+    "6": [19, 0],
+    "7": [176, 311]
 }
-max_number = 6
+max_number = 7
 
 
-def eat_it(base, mask, photo, number):
+def ero_it(base, mask, photo, number):
     mask_size = mask.size
     photo_size = photo.size
     if mask_size[0] < photo_size[0] and mask_size[1] < photo_size[1]:
@@ -39,14 +40,14 @@ def eat_it(base, mask, photo, number):
 
 
 @listener(is_plugin=True, outgoing=True, command="ero",
-          description="生成一张 吃头像 图片，（可选：当第二个参数存在时，旋转用户头像 180°）",
+          description="生成一张 エロ 图片，（可选：当第二个参数存在时，旋转用户头像 180°）",
           parameters="<username/uid> [随意内容]")
-async def eat(context):
+async def ero(context):
     if len(context.parameter) > 2:
         await context.edit("出错了呜呜呜 ~ 无效的参数。")
         return
     diu_round = False
-    await context.edit("正在生成 吃头像 图片中 . . .")
+    await context.edit("正在生成 エロ 图片中 . . .")
     if context.reply_to_msg_id:
         reply_message = await context.get_reply_message()
         user_id = reply_message.sender_id
@@ -98,16 +99,16 @@ async def eat(context):
                 re = get('https://raw.githubusercontent.com/StarStar-Lab/Python/main/ero/mask' + str(num) + '.png')
                 with open('plugins/ero/mask' + str(num) + '.png', 'wb') as ms:
                     ms.write(re.content)
-        number = randint(1, max_number)
-        # number = 7
+        # number = randint(1, max_number)
+        number = 7
         markImg = Image.open("plugins/ero/" + str(target_user.user.id) + ".jpg")
-        eatImg = Image.open("plugins/ero/ero" + str(number) + ".png")
+        eroImg = Image.open("plugins/ero/ero" + str(number) + ".png")
         maskImg = Image.open("plugins/ero/mask" + str(number) + ".png")
         if len(context.parameter) == 2:
             diu_round = True
         if diu_round:
             markImg = markImg.rotate(180)  # 对图片进行旋转
-        result = eat_it(eatImg, maskImg, markImg, number)
+        result = ero_it(eroImg, maskImg, markImg, number)
         result.save('plugins/ero/ero.webp')
         target_file = await context.client.upload_file("plugins/ero/ero.webp")
         try:
