@@ -17,7 +17,7 @@ positions = {
     "4": [369, 355],
     "5": [177, 309],
     "6": [19, 0],
-    "7": [176, 311]
+    "7": [176, 312]
 }
 max_number = 7
 
@@ -99,8 +99,8 @@ async def ero(context):
                 re = get('https://raw.githubusercontent.com/StarStar-Lab/Python/main/ero/mask' + str(num) + '.png')
                 with open('plugins/ero/mask' + str(num) + '.png', 'wb') as ms:
                     ms.write(re.content)
-        # number = randint(1, max_number)
-        number = 7
+        number = randint(1, max_number)
+        # number = 7
         markImg = Image.open("plugins/ero/" + str(target_user.user.id) + ".jpg")
         eroImg = Image.open("plugins/ero/ero" + str(number) + ".png")
         maskImg = Image.open("plugins/ero/mask" + str(number) + ".png")
