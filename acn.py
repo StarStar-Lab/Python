@@ -12,6 +12,7 @@ star = emojize(":star:", use_aliases=True)
 star2 = emojize(":star2:", use_aliases=True)
 bottle = emojize(":baby_bottle:", use_aliases=True)
 ctd = '千反田が好き'
+hq = '私、気になります'
 iga = '𝒶'
 igh = '𝒽'
 @listener(is_plugin=True, outgoing=True, command="acn",
@@ -27,14 +28,16 @@ async def change_name_auto(context):
                 for_fun = random.random()
                 ahhh = random.randint(3, 7)
                 first_name = iga + ahhh * igh + ' ' + '|' + ' '
-                if for_fun < 0.25:
+                if for_fun < 0.20:
                     last_name = '%s' % (ctd)
-                elif for_fun < 0.50:
+                elif for_fun < 0.40:
                     last_name = '%s' % (star)
-                elif for_fun < 0.75:
+                elif for_fun < 0.60:
                     last_name = '%s' % (star2)
-                else:
+                elif for_fun < 0.60:
                     last_name = '%s' % (bottle)
+                else:
+                    last_name = '%s' % (hq)
 
                 await bot(UpdateProfileRequest(last_name=last_name))
                 await sleep(1)
