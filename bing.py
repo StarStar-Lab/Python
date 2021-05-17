@@ -17,7 +17,7 @@ async def bing(context):
         if req.status_code == 200:
             data =json.load(req.text)
             image_url = data['url']
-            break
+            await context.edit("获取壁纸连接成功 . . .")        
     for _ in range (20): #最多重试20次
         website = random.randint(0,0)
         filename = "wallpaper" + str(random.random())[2:] + ".png"
