@@ -11,7 +11,7 @@ async def bing(context):
     await context.edit("搜索壁纸中 . . .")
     status = False
     index = random.randint(0,7)
-    json_url =  f"https://bing.biturl.top/?resolution=1920&format=json&index=`{str(index)}`&mkt=zh-CN"
+    json_url =  f"https://bing.biturl.top/?resolution=1920&format=json&index= `{str(index)}` &mkt=zh-CN"
     for _ in range(5):
         req = get(json_url)  
         if req.status_code == 200:
