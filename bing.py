@@ -35,8 +35,7 @@ async def bing(context):
                 with open(filename, 'wb') as f:
                     f.write(img.content)
                 await context.edit("传壁纸中 . . .")
-                await context.client.send_file(context.chat_id,filename,caption=(f"#bing wallpaper"
-                                               "str(copyright)"))
+                await context.client.send_file(context.chat_id,filename,caption = f"#bing wallpaper\n{str(copyright)}")
                 status = True
                 break #成功了就赶紧结束啦！
         except:
