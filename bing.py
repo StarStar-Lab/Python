@@ -12,10 +12,10 @@ async def bing(context):
     status = False
     index = random.randint(0,7)
     json_url =  f"https://bing.biturl.top/?resolution=1920&format=json&index= `{str(index)}` &mkt=zh-CN"
-    for _ in range(5):
+    for _ in range (5):
         req = get(json_url)  
         if req.status_code == 200:
-            data =json.load(req.text)
+            data = json.load(req.text)
             image_url = data['url']
             await context.edit("获取壁纸连接成功 . . .")        
     for _ in range (20): #最多重试20次
