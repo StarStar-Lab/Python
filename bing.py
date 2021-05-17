@@ -12,8 +12,8 @@ def get_url(num):
     copyright = " "
     if req.status_code == 200:
         data = json.loads(req.text)
-        url = data['images']['url']
-        copyright = data['images']['copyright']
+        url = data['images'][0]['url']
+        copyright = data['images'][0]['copyright']
     return url, copyright
 @listener(is_plugin=True, outgoing=True, command="bing",
           description="随机获取壁纸")    
