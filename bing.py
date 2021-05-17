@@ -4,13 +4,12 @@ from requests import get
 from pagermaid.listener import listener
 from os import remove
 
-def get_url(num)
+def get_url(num):
     json_url =  f"https://bing.biturl.top/?resolution=1920&format=json&index= `{str(num)}` &mkt=zh-CN"
     req = get(json_url)  
     if req.status_code == 200:
         data = json.load(req.text)
         image_url = data['url']
-        await context.edit("获取壁纸连接成功 . . .") 
         return image_url
 @listener(is_plugin=True, outgoing=True, command="bing",
           description="随机获取壁纸")    
