@@ -7,17 +7,23 @@ from os import remove
 
 @listener(is_plugin=True, outgoing=True, command="bing",
           description="随机获取壁纸")
-async def ghs(context):
+async def bing(context):
     await context.edit("搜索壁纸中 . . .")
     status = False
     index = random.randint(0,7)
-    url =  f"https://bing.biturl.top/?resolution=1920&format=image&index=`{str(index)}`&mkt=zh-CN"
+    json_url =  f"https://bing.biturl.top/?resolution=1920&format=json&index=`{str(index)}`&mkt=zh-CN"
+    for _ in range(5):
+        req = get(json_url)  
+        if req.status_code == 200:
+            data =json.load(req.text)
+            image_url = data['url']
+            break
     for _ in range (20): #最多重试20次
         website = random.randint(0,0)
         filename = "wallpaper" + str(random.random())[2:] + ".png"
         try:
             if website == 0:
-                img = get(url)
+                img = get(image_url)
             if img.status_code == 200:
                 with open(filename, 'wb') as f:
                     f.write(img.content)
