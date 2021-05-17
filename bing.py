@@ -10,7 +10,7 @@ from os import remove
 async def ghs(context):
     await context.edit("搜索壁纸中 . . .")
     status = False
-    index = random.randint()
+    index = random.randint(0,7)
     url =  f"https://bing.biturl.top/?resolution=1920&format=image&index=`{str(index)}`&mkt=zh-CN"
     for _ in range (20): #最多重试20次
         website = random.randint(0,0)
