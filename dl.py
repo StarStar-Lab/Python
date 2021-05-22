@@ -29,13 +29,13 @@ async def sticker(context):
                 if pic_round:
                     redis.delete("sticker.round")
                     try:
-                        await context.edit(lang('us_change_rounding_false'))
+                        await context.edit("关闭圆角模式")
                     except:
                         pass
                 else:
                     redis.set("sticker.round", "true")
                     try:
-                        await context.edit(lang('us_change_rounding_true'))
+                        await context.edit("关闭圆角模式")
                     except:
                         pass
                 return
@@ -88,7 +88,7 @@ async def sticker(context):
             return
     else:
         try:
-            await context.edit(lang('sticker_reply_not_sticker'))
+            await context.edit("哥哥，这个不是贴纸诶，人家不会弄")
         except:
             pass
         return
@@ -123,7 +123,7 @@ async def sticker(context):
             image = await resize_image(photo)
             if pic_round:
                 try:
-                    await context.edit(lang('us_static_rounding'))
+                    await context.edit("努力圆角中")
                 except:
                     pass
                 image = await rounded_image(photo)
@@ -145,7 +145,7 @@ async def sticker(context):
                 request.Request(f'http://t.me/addstickers/{pack_name}'), context=ssl.create_default_context(cafile=certifi.where()))
         if not response.status == 200:
             try:
-                await context.edit(lang('sticker_telegram_server_error'))
+                await context.edit("哥哥，人家连不上服务器啦")
             except:
                 pass
             return
@@ -177,7 +177,7 @@ A pack can't have more than 120 stickers at the moment.":
                                                     context, file, emoji)
                                 try:
                                     await context.edit(
-                                        f"{lang('sticker_has_been_added')} [{lang('sticker_this')}](t.me/addstickers/{pack_name}) {lang('sticker_pack')}",
+                                        f"哥哥，不要总看着人家嘛，[会害羞的](t.me/addstickers/{pack_name})",
                                         parse_mode='md')
                                 except:
                                     pass
@@ -194,7 +194,7 @@ A pack can't have more than 120 stickers at the moment.":
                 except AlreadyInConversationError:
                     if not sticker_already:
                         try:
-                            await context.edit(lang('sticker_another_running'))
+                            await context.edit("哥哥，一次只能干一个哦")
                         except:
                             pass
                         sticker_already = True
@@ -205,7 +205,7 @@ A pack can't have more than 120 stickers at the moment.":
                     raise
         else:
             try:
-                await context.edit(lang('sticker_no_pack_exist_creating'))
+                await context.edit("帮哥哥创建贴纸包")
             except:
                 pass
             async with bot.conversation('Stickers') as conversation:
@@ -214,7 +214,7 @@ A pack can't have more than 120 stickers at the moment.":
 
         try:
             await context.edit(
-                f"{lang('sticker_has_been_added')} [{lang('sticker_this')}](t.me/addstickers/{pack_name}) {lang('sticker_pack')}",
+                f"哥哥，不要总看着人家嘛，[会害羞的](t.me/addstickers/{pack_name})",
                 parse_mode='md')
         except:
             pass
@@ -255,7 +255,7 @@ async def add_sticker(conversation, command, pack_title, pack_name, animated, me
 async def upload_sticker(animated, message, context, file, conversation):
     if animated:
         try:
-            await context.edit(lang('us_animated_uploading'))
+            await context.edit("正在帮哥哥上传动图")
         except:
             pass
         await conversation.send_file("AnimatedSticker.tgs", force_document=True)
@@ -263,7 +263,7 @@ async def upload_sticker(animated, message, context, file, conversation):
     else:
         file.seek(0)
         try:
-            await context.edit(lang('us_static_uploading'))
+            await context.edit("正在帮哥哥上传图片")
         except:
             pass
         await conversation.send_file(file, force_document=True)
