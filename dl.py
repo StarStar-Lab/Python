@@ -255,7 +255,7 @@ async def add_sticker(conversation, command, pack_title, pack_name, animated, me
 async def upload_sticker(animated, message, context, file, conversation):
     if animated:
         try:
-            await context.edit("正在帮哥哥上传动图")
+            await context.edit("哥哥，你也心疼我嘛？")
         except:
             pass
         await conversation.send_file("AnimatedSticker.tgs", force_document=True)
@@ -263,7 +263,7 @@ async def upload_sticker(animated, message, context, file, conversation):
     else:
         file.seek(0)
         try:
-            await context.edit("正在帮哥哥上传图片")
+            await context.edit("哥哥，你也心疼我嘛？")
         except:
             pass
         await conversation.send_file(file, force_document=True)
