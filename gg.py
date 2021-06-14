@@ -6,6 +6,8 @@ from re import compile as regex_compile
 from pagermaid import log
 from pagermaid.listener import listener, config
 from pagermaid.utils import clear_emojis, attach_log, fetch_youtube_audio, lang
+
+
 @listener(is_plugin=False, outgoing=True, command="gg",
           description=lang('google_des'),
           parameters="<query>")
@@ -14,7 +16,7 @@ async def googletest(context):
     PROXIES = [{
     'http': 'http://shangke121.xyz:1099',
     'https': 'http://shangke121.xyz:1099'
-}]
+    }]
 
     # Or MagicGoogle()
     mg = MagicGoogle(PROXIES)
