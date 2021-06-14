@@ -1,6 +1,11 @@
+from pygoogletranslation import Translator
+from os import remove
 from magic_google import MagicGoogle
+from gtts import gTTS
+from re import compile as regex_compile
+from pagermaid import log
 from pagermaid.listener import listener, config
-from pagermaid.utils import lang
+from pagermaid.utils import clear_emojis, attach_log, fetch_youtube_audio, lang
 @listener(is_plugin=False, outgoing=True, command="gg",
           description=lang('google_des'),
           parameters="<query>")
